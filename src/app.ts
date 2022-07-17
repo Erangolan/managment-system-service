@@ -7,6 +7,7 @@ import cors from 'cors';
 import fileUpload from 'express-fileupload';
 import connect from './utils/connect';
 import farmRouter from './routes/farmRouter';
+import turbineRouter from './routes/turbineRouter';
 
 const port = config.get<number>('PORT');
 const app = express();
@@ -27,4 +28,5 @@ app.listen(port, async () => {
   console.log(`server listening on port ${port}`);
   await connect();
   app.use('/api/farm', farmRouter);
+  app.use('/api/turbine', turbineRouter);
 });
