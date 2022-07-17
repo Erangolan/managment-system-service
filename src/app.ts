@@ -1,5 +1,3 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 /* eslint-disable no-console */
 import express from 'express';
 import config from 'config';
