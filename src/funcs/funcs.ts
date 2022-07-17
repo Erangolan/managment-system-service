@@ -1,7 +1,6 @@
-/* eslint-disable no-undef */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
+/* eslint-disable consistent-return */
 /* eslint-disable no-console */
+/* eslint-disable import/no-unresolved */
 import cloudinary from 'cloudinary';
 import { Model } from 'mongoose';
 import { ITurbine } from '../models/turbine.model';

@@ -1,7 +1,6 @@
-/* eslint-disable no-console */
 /* eslint-disable consistent-return */
+/* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
-// import { Express, Response } from 'express';
 import axios from 'axios';
 import FormData from 'form-data';
 import fs from 'fs';

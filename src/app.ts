@@ -1,4 +1,6 @@
+/* eslint-disable import/extensions */
 /* eslint-disable no-console */
+/* eslint-disable import/no-unresolved */
 import express from 'express';
 import config from 'config';
 import cors from 'cors';
