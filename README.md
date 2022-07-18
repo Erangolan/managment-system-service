@@ -1,4 +1,4 @@
-# NodeJS Micro-Service
+# NodeTS Micro-Service
 The main goal of the microservice is to get file, scan it, detect vulnerabilities and viruses and if any found, save it in db and cloud.
 Furthermore, the micro service supply crud operation for farm and turbines models.
 
