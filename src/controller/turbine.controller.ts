@@ -8,6 +8,7 @@ import { FileRequest } from '../../globals';
 import { scanViruses, saveFileData } from '../service/turbine.service';
 import Turbine from '../models/turbine.model';
 import { getAllDocuments, getDocumentById, deleteDocument } from '../funcs/funcs';
+import logger from '../utils/logger';
 
 export const uploadImage = async (req: FileRequest, res: Response) => {
   const { files } = req;
@@ -23,12 +24,12 @@ export const uploadImage = async (req: FileRequest, res: Response) => {
       return res.send('vulnerabilities found! proccess stoped');
     }
 
-    console.log('no vulnerabilities found');
+    logger.info('no vulnerabilities found');
 
     await saveFileData(filePath);
     return res.send('No weaknesses were found');
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     return error;
   }
 };
@@ -40,7 +41,7 @@ export const getAllDocs = async (req: FileRequest, res: Response) => {
       turbines,
     });
   } catch (e: any) {
-    console.log({ stack: e.stack }, 'error in fetching data from db', { message: e.toString() });
+    logger.error({ stack: e.stack }, 'error in fetching data from db', { message: e.toString() });
 
     return e;
   }
@@ -54,7 +55,7 @@ export const getDocById = async (req: Request, res: Response) => {
       turbine,
     });
   } catch (e: any) {
-    console.log({ stack: e.stack }, 'error in fetching data from db', { message: e.toString() });
+    logger.error({ stack: e.stack }, 'error in fetching data from db', { message: e.toString() });
 
     return e;
   }
@@ -67,7 +68,7 @@ export const deleteDoc = async (req: Request, res: Response) => {
 
     return res.send('file deleted successfully!');
   } catch (e: any) {
-    console.log({ stack: e.stack }, 'error in deleting document', { message: e.toString() });
+    logger.error({ stack: e.stack }, 'error in deleting document', { message: e.toString() });
 
     return e;
   }

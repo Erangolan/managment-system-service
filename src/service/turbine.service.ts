@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable consistent-return */
 /* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
@@ -7,6 +8,7 @@ import fs from 'fs';
 import cloudinary from 'cloudinary';
 import config from 'config';
 import TurbineModel from '../models/turbine.model';
+import logger from '../utils/logger';
 
 const VT_API_URL = config.get<string>('VT_API_URL');
 const VT_API_KEY = config.get<string>('VT_API_KEY');
@@ -37,7 +39,7 @@ export const scanViruses = async (filePath: string) => {
 
     return vulnerabilities;
   } catch (e: any) {
-    console.log({ stack: e.stack }, 'error at scanning viruses from vt-api', { message: e.toString() });
+    logger.error({ stack: e.stack }, 'error at scanning viruses from vt-api', { message: e.toString() });
 
     return e;
   }
@@ -52,15 +54,15 @@ export const saveFileData = async (filePath: string) => {
       url,
     } = await cloudinary.v2.uploader.upload(filePath);
 
-    console.log('file uploaded successfully to cloud!');
+    logger.info('file uploaded successfully to cloud!');
 
     await TurbineModel.updateOne({ assetId }, {
       assetId, publicId, signature, url,
     }, { upsert: true });
 
-    console.log('file saved successfully in db!');
+    logger.info('file saved successfully in db!');
   } catch (e: any) {
-    console.log({ stack: e.stack }, 'error in saving file', { message: e.toString() });
+    logger.error({ stack: e.stack }, 'error in saving file', { message: e.toString() });
 
     return e;
   }

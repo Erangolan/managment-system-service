@@ -5,6 +5,7 @@ import express from 'express';
 import config from 'config';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
+import logger from './utils/logger';
 import connect from './utils/connect';
 import farmRouter from './routes/farmRouter';
 import turbineRouter from './routes/turbineRouter';
@@ -22,11 +23,12 @@ app.use(
     origin: '*',
   }),
 );
+
 app.use(express.json());
+app.use('/api/farm', farmRouter);
+app.use('/api/turbine', turbineRouter);
 
 app.listen(port, async () => {
-  console.log(`server listening on port ${port}`);
+  logger.info(`server listening on port ${port}`);
   await connect();
-  app.use('/api/farm', farmRouter);
-  app.use('/api/turbine', turbineRouter);
 });
