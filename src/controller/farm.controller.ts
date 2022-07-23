@@ -1,6 +1,5 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/extensions */
-/* eslint-disable no-console */
 import { Request, Response } from 'express';
 import FormData from 'form-data';
 import fs from 'fs';
